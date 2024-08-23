@@ -6,17 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Areas\Identity\Identity\**" />
-    <Content Remove="Areas\Identity\Identity\**" />
-    <EmbeddedResource Remove="Areas\Identity\Identity\**" />
-    <None Remove="Areas\Identity\Identity\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="EPPlus" Version="6.1.0" />
     <PackageReference Include="jQuery" Version="3.7.0" />
-    <PackageReference Include="jQuery.Validation" Version="1.21.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.39" />
 	  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.32" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.32" />

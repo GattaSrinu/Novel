@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Novel.DataAccess.Repository.IRepository;
 
 namespace Novel.DataAccess.Repository
 {
@@ -16,12 +15,14 @@ namespace Novel.DataAccess.Repository
         public ICategoryRepositry Category { get; private set; }
         public IProductRepositry Product { get; private set; }
         public ICompanyRepository Company { get; private set; }
+      
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             Category = new CategoryRepositry(_db);
             Product = new ProductRepositry(_db);
             Company = new CompanyRepository(_db);
+           
 
         }
 

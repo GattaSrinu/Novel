@@ -4,18 +4,18 @@
 
 namespace Novel.DataAccess.Migrations
 {
-    public partial class addCompanyIdToUsers : Migration
+    public partial class AddComanyIdToUsers : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                      name: "Name",
-                      table: "AspNetUserTokens",
-                      type: "nvarchar(450)",
-                      nullable: false,
-                      oldClrType: typeof(string),
-                      oldType: "nvarchar(128)",
-                      oldMaxLength: 128);
+                     name: "Name",
+                     table: "AspNetUserTokens",
+                     type: "nvarchar(450)",
+                     nullable: false,
+                     oldClrType: typeof(string),
+                     oldType: "nvarchar(128)",
+                     oldMaxLength: 128);
 
             migrationBuilder.AlterColumn<string>(
                 name: "LoginProvider",
@@ -62,6 +62,7 @@ namespace Novel.DataAccess.Migrations
                 principalTable: "Companies",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -72,7 +72,7 @@
                             <input asp-for="Input.PostalCode" class="form-control" placeholder="Postal Code" />
                             <label asp-for="Input.PostalCode" class="ms-2 text-muted">Postal Code</label>
                             <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
-                        </div>
+                        </div>                       
                         @if (User.IsInRole(SD.Role_Admin))
                         {
                             <div class="form-floating mb-3 col-md-6">
@@ -92,10 +92,10 @@
                     </form>
                 </div>
                 @if (!User.IsInRole(SD.Role_Admin))
-                {
+                {   
                     <div class="col-md-12 p-3 text-center">
-                        <section>
-                            <p class="divider-text d-flex pt-3">or</p>
+                        <section>      
+                               
                             @{
                                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                                 {

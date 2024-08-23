@@ -12,8 +12,8 @@ using Novel.DataAccess.Data;
 namespace Novel.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240822153751_addCompanyIdToUsers")]
-    partial class addCompanyIdToUsers
+    [Migration("20240823094002_AddComanyIdToUsers")]
+    partial class AddComanyIdToUsers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -11,7 +11,6 @@ namespace Novel.DataAccess.Repository.IRepository
         ICategoryRepositry  Category { get; }
         ICompanyRepository Company { get; }
         IProductRepositry Product { get; }
-
         void Save();
     }
 }
