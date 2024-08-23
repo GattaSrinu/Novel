@@ -1,0 +1,49 @@
+﻿@model Novel.Models.Category
+
+
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row"
+      <div class="col-12">
+        <h2 class="text-white text-center py-2">Delete Category</h2>
+      </div>
+      </div>
+   
+<div class="card-body p-4">
+<form asp-action="Delete" method="post">
+
+    <input type="hidden" asp-for="Id" />
+    <div class="border pt-3 mt-4">
+        <div class="row">
+        </div>
+
+        <div class="form-group">
+        <div class="mb-3 row p-1">
+            <label asp-for="Name" class="ms-lg-2"></label>
+                <input asp-for="Name" disabled class="form-control border-2 shadow" />
+                <span asp-validation-for="Name"  class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row p-1">
+            <label asp-for="DisplayOrder" class="ms-lg-2"></label>
+                <input asp-for="DisplayOrder" disabled class="form-control border-2 shadow" />
+            <span asp-validation-for="DisplayOrder"  class="text-danger"></span>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-6">
+                            <button type="submit" class="btn btn-danger form-group" style="width:150px">Delete</button>
+            </div>
+            <div class="col-6">
+                            <a asp-controller="Category" asp-action="Index" class="btn btn-info form-group" style="width:200px">Back To List</a>
+            </div>
+        </div>
+    </div>
+</form>
+    </div>
+    </div>
+</div>

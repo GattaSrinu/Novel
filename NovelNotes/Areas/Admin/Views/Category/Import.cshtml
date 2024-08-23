@@ -1,0 +1,31 @@
+﻿@model Novel.Models.Category
+
+@{
+    ViewData["Title"] = "Import";
+}
+
+<h2>Import Excel Data</h2>
+
+<form asp-action="Import" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label class="form-control">Select Excel File:</label>
+        <input type="file" name="file" class="form-control" />
+    </div>
+    </hr
+
+    <div>
+        <button class="btn btn-success btn-lg float-right" type="submit">Import</button>
+    </div>
+   
+
+    @if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <div class="alert alert-success">@ViewBag.Message</div>
+    }
+
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+</form>
+
