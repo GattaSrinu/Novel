@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Novel.DataAccess.Repository
 {
-    public class ProductRepositry : Repository<Product>,IProductRepositry
+    public class ProductRepositry : Repository<Product>, IProductRepository
     {
         private ApplicationDbContext _db;
 
@@ -27,19 +27,20 @@ namespace Novel.DataAccess.Repository
             var objFromDB = _db.Products.FirstOrDefault(u => u.Id == obj.Id);
             if (objFromDB != null)
             {
-                objFromDB.Title = objFromDB.Title;
-                objFromDB.ISBN = objFromDB.ISBN;
-                objFromDB.Price = objFromDB.Price;
-                objFromDB.Price50 = objFromDB.Price50;
-                objFromDB.Price100 = objFromDB.Price100;
-                objFromDB.Description = objFromDB.Description;
-                objFromDB.CategoryId = objFromDB.CategoryId;
-                objFromDB.Author = objFromDB.Author;
+                objFromDB.Title = obj.Title;
+                objFromDB.ISBN = obj.ISBN;
+                objFromDB.Price = obj.Price;
+                objFromDB.Price50 = obj.Price50;
+                objFromDB.Price100 = obj.Price100;
+                objFromDB.Description = obj.Description;
+                objFromDB.CategoryId = obj.CategoryId;
+                objFromDB.Author = obj.Author;
+                objFromDB.ProductImages = obj.ProductImages;
 
-                if(obj.ImageUrl != null)
-                {
-                    objFromDB.ImageUrl = obj.ImageUrl;
-                }
+                //if (obj.ImageUrl != null)
+                //{
+                //    objFromDB.ImageUrl = obj.ImageUrl;
+                //}
             }
         }
     }

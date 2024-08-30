@@ -24,8 +24,4 @@
     <ProjectReference Include="..\Novel.Utility\Novel.Utility.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DbInitializer\" />
-  </ItemGroup>
-
 </Project>

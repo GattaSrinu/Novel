@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
+
 namespace Novel.Models
 {
     public class Product
@@ -53,7 +54,11 @@ namespace Novel.Models
         [ForeignKey("CategoryId")]
         [ValidateNever]
         public Category Category { get; set; }
+
         [ValidateNever]
-        public string ImageUrl { get; set; }
+        public List<ProductImage> ProductImages { get; set; }
+
+        //[ValidateNever]
+        //public string ImageUrl { get; set; }
     }
 }

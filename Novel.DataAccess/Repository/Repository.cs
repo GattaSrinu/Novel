@@ -32,9 +32,18 @@ namespace Novel.DataAccess.Repository
                dbSet.Add(entity);
         }
 
-        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked =false)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query;
+            if (tracked)
+            {
+                query = dbSet;
+
+            }
+            else
+            {
+                query = dbSet.AsNoTracking();
+            }
             query = query.Where(filter);
 
             if (!string.IsNullOrEmpty(includeProperties))
@@ -46,8 +55,30 @@ namespace Novel.DataAccess.Repository
             }
             return query.FirstOrDefault();
         }
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
+        {
+            IQueryable<T> query;
+            if (tracked)
+            {
+                query = dbSet;
 
-        public IEnumerable<T> GetAll(string? includeProperties = null)
+            }
+            else
+            {
+                query = dbSet.AsNoTracking();
+            }
+            query = query.Where(filter);
+
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includePop in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includePop);
+                }
+            }
+            return query.FirstOrDefault();
+        }
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter,string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
 

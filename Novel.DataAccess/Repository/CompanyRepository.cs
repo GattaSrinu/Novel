@@ -22,6 +22,17 @@ namespace Novel.DataAccess.Repository
         public void Update(Company obj)
         {
             _db.Companies.Update(obj);
+
+            var objFromDB = _db.Companies.FirstOrDefault(u => u.Id == obj.Id);
+            if (objFromDB != null)
+            {
+                objFromDB.Name = obj.Name;
+                objFromDB.StreetAddress = obj.StreetAddress;
+                objFromDB.City = obj.City;
+                objFromDB.State = obj.State;
+                objFromDB.PostalCode = obj.PostalCode;
+                objFromDB.PhoneNumber = obj.PhoneNumber;
+            }
         }
     }
 }

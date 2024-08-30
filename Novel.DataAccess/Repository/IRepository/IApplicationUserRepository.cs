@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Novel.DataAccess.Repository.IRepository
 {
-    public interface IProductRepositry : IRepository<Product>
-    { 
-        void Update(Product obj);
-      
+    public interface IApplicationUserRepository : IRepository<ApplicationUser>
+    {
+        public void Update(ApplicationUser applicationUser);
     }
 }

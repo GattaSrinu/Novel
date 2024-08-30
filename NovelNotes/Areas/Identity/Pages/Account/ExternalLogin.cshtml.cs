@@ -17,9 +17,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using Novel.Models;
-using Novel.Utility;
 using Novel.DataAccess;
+using Novel.Utility;
+using Novel.Models;
 
 namespace NovelNotes.Areas.Identity.Pages.Account
 {

@@ -8,6 +8,7 @@ using Novel.DataAccess.Data;
 using Novel.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Novel.Utility;
+using Novel.DataAccess;
 
 
 
