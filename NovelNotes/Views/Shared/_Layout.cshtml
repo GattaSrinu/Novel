@@ -41,8 +41,8 @@
                             <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                        
-                        @if(User.IsInRole(SD.Role_Admin))
-                        {
+                        @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Company) || User.IsInRole(SD.Role_Employee))
+                          {
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">Manage Order</a>
                             </li>

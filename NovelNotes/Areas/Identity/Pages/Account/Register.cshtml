@@ -72,7 +72,8 @@
                             <input asp-for="Input.PostalCode" class="form-control" placeholder="Postal Code" />
                             <label asp-for="Input.PostalCode" class="ms-2 text-muted">Postal Code</label>
                             <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
-                        </div>                       
+                        </div> 
+                        
                         @if (User.IsInRole(SD.Role_Admin))
                         {
                             <div class="form-floating mb-3 col-md-6">

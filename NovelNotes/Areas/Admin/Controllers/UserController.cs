@@ -32,6 +32,8 @@ namespace NovelNotes.Areas.Admin.Controllers
         {
             return View();
         }
+
+
         public IActionResult RoleManagment(string userId)
         {
 
@@ -97,6 +99,7 @@ namespace NovelNotes.Areas.Admin.Controllers
         }
 
 
+
         #region API CALLS
 
         [HttpGet]
@@ -106,7 +109,6 @@ namespace NovelNotes.Areas.Admin.Controllers
 
             foreach (var user in objUserList)
             {
-
                 user.Role = _userManager.GetRolesAsync(user).GetAwaiter().GetResult().FirstOrDefault();
 
                 if (user.Company == null)

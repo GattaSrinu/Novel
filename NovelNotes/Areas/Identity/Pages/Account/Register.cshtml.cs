@@ -104,10 +104,18 @@ namespace NovelNotes.Areas.Identity.Pages.Account
 
             [Required]
             public string Name { get; set; }
+            [Required]
             public string? StreetAddress { get; set; }
+            [Required]
+            [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "City must contain only letters and spaces.")]
             public string? City { get; set; }
+            [Required]
             public string? State { get; set; }
+            [Required]
             public string? PostalCode { get; set; }
+            [Required]
+            [StringLength(10, MinimumLength = 10, ErrorMessage = "Phone Number must be exactly 10 characters.")]
+            [RegularExpression(@"^\d{10}$", ErrorMessage = "Phone Number must be exactly 10 digits.")]
             public string? PhoneNumber { get; set; }
             public int? CompanyId { get; set; }
 
@@ -168,8 +176,9 @@ namespace NovelNotes.Areas.Identity.Pages.Account
                 user.PostalCode = Input.PostalCode;
                 user.PhoneNumber = Input.PhoneNumber;
 
-                if (Input.Role == SD.Role_Company) {
-                    user.CompanyId=Input.CompanyId;
+                if (Input.Role == SD.Role_Company)
+                {
+                    user.CompanyId = Input.CompanyId;
                 }
 
                 var result = await _userManager.CreateAsync(user, Input.Password);

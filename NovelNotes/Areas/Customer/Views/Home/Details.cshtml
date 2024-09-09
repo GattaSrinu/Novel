@@ -108,31 +108,39 @@
                         <div class="row pl-2 my-3">
                             <p class="text-secondary lh-sm">@Html.Raw(Model.Product.Description)</p>
                         </div>
-                        <div class="row pl-2 mb-3">
-                            <div class="col-md-4">
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text bg-primary text-white border-0 fw-semibold"
-                                          id="inputGroup-sizing-default">
-                                        Count
-                                    </span>
-                                    <input asp-for="Count" type="number" value="1" class="form-control text-end"
-                                           aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-
+                        @if (User.IsInRole(SD.Role_Customer))
+                        {
+                            <div class="row ps-2 mb-3">
+                                <div class="col-md-4">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text bg-primary text-white border-0 fw-semibold" id="inputGroup-sizing-default">Count</span>
+                                        <input asp-for="Count" type="number" value="1" min="1" class="form-control text-end" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-6 pb-1">
-                                <button type="submit"
-                                        class="btn btn-primary bg-gradient  w-100 py-2 text-uppercase fw-semibold">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6 pb-1">
+                                    <button type="submit" class="btn btn-primary bg-gradient w-100 py-2 text-uppercase fw-semibold">Add to Cart</button>
+                                </div>
+                            </div>
+
+
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <div class="col-12 col-md-6 pb-1">
+                                    <div class="bg-gradient w-100 py-2 text-uppercase fw-semibold">Order Details</div>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
             </div>
         </div>
     </div>
 </form>
+
+
+

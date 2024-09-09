@@ -10,6 +10,7 @@ using NovelNotes;
 using Microsoft.Extensions.DependencyInjection;
 using Novel.Utility;
 using Novel.DataAccess.DbInitializer;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -67,7 +68,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-//StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 
 app.UseRouting();
 app.UseHttpsRedirection();

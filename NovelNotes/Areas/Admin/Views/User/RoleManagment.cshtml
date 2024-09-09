@@ -18,6 +18,27 @@
                     <label asp-for="ApplicationUser.Name" class="ms-2"></label>
                 </div>
                 <div class="form-floating py-2 col-12">
+                    <input asp-for="ApplicationUser.StreetAddress" readonly class="form-control border-0 shadow" />
+                    <label asp-for="ApplicationUser.StreetAddress" class="ms-2"></label>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="ApplicationUser.City" class="form-control border-0 shadow" />
+                    <label asp-for="ApplicationUser.City" class="ms-2"></label>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="ApplicationUser.State" readonly class="form-control border-0 shadow" />
+                    <label asp-for="ApplicationUser.State" class="ms-2"></label>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="ApplicationUser.PostalCode" readonly class="form-control border-0 shadow" />
+                    <label asp-for="ApplicationUser.PostalCode" class="ms-2"></label>
+                </div>
+                <div class="form-floating mb-3 col-md-6">
+                    <input asp-for="ApplicationUser.PhoneNumber" class="form-control" placeholder="Phone Number" />
+                    <label asp-for="ApplicationUser.PhoneNumber" class="ms-2 text-muted">Phone Number</label>
+                    <span asp-validation-for="ApplicationUser.PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
                     <select asp-for="ApplicationUser.Role" asp-items="@Model.RoleList" class="form-select"></select>
                 </div>
                 @{
