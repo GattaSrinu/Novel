@@ -55,7 +55,7 @@ namespace Novel.DataAccess.DbInitializer
 
                 _userManager.CreateAsync(new ApplicationUser
                 {
-                    UserName = "mm.srinug@gmail.com",
+                    UserName = "srinu Gatta",
                     Email = "mm.srinug@gmail.com",
                     Name = "Srinu Gatta",
                     PhoneNumber = "1234567890",

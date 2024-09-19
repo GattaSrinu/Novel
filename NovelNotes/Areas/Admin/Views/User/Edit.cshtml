@@ -1,5 +1,11 @@
 ﻿@model UserEditVM
 
+<style>
+    input[readonly] {
+        background-color: gray;
+    }
+</style>
+
 <div class="card shadow border-0 mt-4">
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
@@ -15,24 +21,38 @@
             <div class="form-floating py-2 col-12">
                 <input asp-for="ApplicationUser.Name" class="form-control border-0 shadow" />
                 <label asp-for="ApplicationUser.Name" class="ms-2"></label>
+                <span asp-validation-for="ApplicationUser.Name" class="text-danger"></span>
             </div>
 
             <div class="form-floating py-2 col-12">
-                <input asp-for="ApplicationUser.Email" class="form-control border-0 shadow" />
+                <input asp-for="ApplicationUser.Email" readonly class="form-control border-0 shadow" />
                 <label asp-for="ApplicationUser.Email" class="ms-2"></label>
             </div>
 
             <div class="form-floating py-2 col-12">
-                <input asp-for="ApplicationUser.PhoneNumber" class="form-control border-0 shadow" />
+                <input asp-for="ApplicationUser.PhoneNumber" readonly class="form-control border-0 shadow" />
                 <label asp-for="ApplicationUser.PhoneNumber" class="ms-2"></label>
             </div>
 
             <div class="form-floating py-2 col-12">
-                <select asp-for="SelectedRole" asp-items="Model.RoleList" class="form-select"></select>
+                <input asp-for="ApplicationUser.StreetAddress" class="form-control border-0 shadow" />
+                <label asp-for="ApplicationUser.StreetAddress" class="ms-2"></label>
+                <span asp-validation-for="ApplicationUser.StreetAddress" class="text-danger"></span>
             </div>
-
-            <div class="form-floating py-2 col-12" id="CompanySelect" style="display:@(Model.SelectedRole == SD.Role_Company ? "block" : "none")">
-                <select asp-for="ApplicationUser.CompanyId" asp-items="Model.CompanyList" class="form-select"></select>
+            <div class="form-floating py-2 col-12">
+                <input asp-for="ApplicationUser.City" class="form-control border-0 shadow" />
+                <label asp-for="ApplicationUser.City" class="ms-2"></label>
+                <span asp-validation-for="ApplicationUser.City" class="text-danger"></span>
+            </div>
+            <div class="form-floating py-2 col-12">
+                <input asp-for="ApplicationUser.State" class="form-control border-0 shadow" />
+                <label asp-for="ApplicationUser.State" class="ms-2"></label>
+                <span asp-validation-for="ApplicationUser.State" class="text-danger"></span>
+            </div>
+            <div class="form-floating py-2 col-12">
+                <input asp-for="ApplicationUser.PostalCode" class="form-control border-0 shadow" />
+                <label asp-for="ApplicationUser.PostalCode" class="ms-2"></label>
+                <span asp-validation-for="ApplicationUser.PostalCode" class="text-danger"></span>
             </div>
 
             <div class="row pt-2">
@@ -47,17 +67,11 @@
     </div>
 </div>
 
+
+
 @section Scripts {
-    <script>
-        $(document).ready(function () {
-            $('#SelectedRole').change(function () {
-                var selectedRole = $('#SelectedRole option:selected').text();
-                if (selectedRole == 'Company') {
-                    $('#CompanySelect').show();
-                } else {
-                    $('#CompanySelect').hide();
-                }
-            });
-        });
-    </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
 }
+

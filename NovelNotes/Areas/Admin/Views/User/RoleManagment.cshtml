@@ -22,7 +22,7 @@
                     <label asp-for="ApplicationUser.StreetAddress" class="ms-2"></label>
                 </div>
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="ApplicationUser.City" class="form-control border-0 shadow" />
+                    <input asp-for="ApplicationUser.City" readonly class="form-control border-0 shadow" />
                     <label asp-for="ApplicationUser.City" class="ms-2"></label>
                 </div>
                 <div class="form-floating py-2 col-12">
@@ -34,9 +34,8 @@
                     <label asp-for="ApplicationUser.PostalCode" class="ms-2"></label>
                 </div>
                 <div class="form-floating mb-3 col-md-6">
-                    <input asp-for="ApplicationUser.PhoneNumber" class="form-control" placeholder="Phone Number" />
-                    <label asp-for="ApplicationUser.PhoneNumber" class="ms-2 text-muted">Phone Number</label>
-                    <span asp-validation-for="ApplicationUser.PhoneNumber" class="text-danger"></span>
+                    <input asp-for="ApplicationUser.PhoneNumber" readonly class="form-control" placeholder="Phone Number" />
+                    <label asp-for="ApplicationUser.PhoneNumber" class="ms-2 text-muted">Phone Number</label>                 
                 </div>
                 <div class="form-floating py-2 col-12">
                     <select asp-for="ApplicationUser.Role" asp-items="@Model.RoleList" class="form-select"></select>

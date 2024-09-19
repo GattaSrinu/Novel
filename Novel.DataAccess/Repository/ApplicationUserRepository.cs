@@ -1,4 +1,5 @@
-﻿using Novel.DataAccess.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Novel.DataAccess.Data;
 using Novel.DataAccess.Repository.IRepository;
 using Novel.Models;
 using System;
@@ -20,6 +21,6 @@ namespace Novel.DataAccess.Repository
         {
             _db.ApplicationUsers.Update(applicationUser);
         }
-
+ 
     }
 }

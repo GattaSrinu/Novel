@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Data;
 using Novel.DataAccess.Repository;
+using SendGrid.Helpers.Mail;
+using Stripe.Climate;
 
 namespace NovelNotes.Areas.Admin.Controllers
 {
@@ -32,7 +34,6 @@ namespace NovelNotes.Areas.Admin.Controllers
         {
             return View();
         }
-
 
         public IActionResult RoleManagment(string userId)
         {
@@ -60,8 +61,7 @@ namespace NovelNotes.Areas.Admin.Controllers
         public IActionResult RoleManagment(RoleManagmentVM roleManagmentVM)
         {
 
-            string oldRole = _userManager.GetRolesAsync(_unitOfWork.ApplicationUser.Get(u => u.Id == roleManagmentVM.ApplicationUser.Id))
-                    .GetAwaiter().GetResult().FirstOrDefault();
+            string oldRole = _userManager.GetRolesAsync(_unitOfWork.ApplicationUser.Get(u => u.Id == roleManagmentVM.ApplicationUser.Id)).GetAwaiter().GetResult().FirstOrDefault();
 
             ApplicationUser applicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == roleManagmentVM.ApplicationUser.Id);
 
@@ -98,7 +98,65 @@ namespace NovelNotes.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Edit(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return NotFound();
+            }
 
+            var applicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == id);
+
+            if (applicationUser == null)
+            {
+                return NotFound();
+            }
+
+            // Prepare the view model
+            UserEditVM userEditVM = new UserEditVM()
+            {
+                ApplicationUser = applicationUser
+            };
+
+            return View(userEditVM);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(UserEditVM userEditVM)
+        {
+            var applicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userEditVM.ApplicationUser.Id);
+            if (applicationUser == null)
+            {
+                return NotFound();
+            }
+
+            // Manual field validation
+            if (string.IsNullOrWhiteSpace(userEditVM.ApplicationUser.Name) ||
+                string.IsNullOrWhiteSpace(userEditVM.ApplicationUser.StreetAddress) ||
+                string.IsNullOrWhiteSpace(userEditVM.ApplicationUser.City) ||
+                string.IsNullOrWhiteSpace(userEditVM.ApplicationUser.State) ||
+                string.IsNullOrWhiteSpace(userEditVM.ApplicationUser.PostalCode))
+            {
+                // Add an error message indicating which field is missing or invalid.
+                ViewBag.ErrorMessage = "All fields are required.";
+                return View(userEditVM);
+            }
+
+            // Updating the user details
+            applicationUser.Name = userEditVM.ApplicationUser.Name;
+            applicationUser.Email = userEditVM.ApplicationUser.Email;
+            applicationUser.PhoneNumber = userEditVM.ApplicationUser.PhoneNumber;
+            applicationUser.StreetAddress = userEditVM.ApplicationUser.StreetAddress;
+            applicationUser.City = userEditVM.ApplicationUser.City;
+            applicationUser.State = userEditVM.ApplicationUser.State;
+            applicationUser.PostalCode = userEditVM.ApplicationUser.PostalCode;
+
+            // Save updated user info
+            _unitOfWork.ApplicationUser.Update(applicationUser);
+            _unitOfWork.Save();
+
+            return RedirectToAction(nameof(Index));
+        }
 
         #region API CALLS
 
@@ -122,7 +180,6 @@ namespace NovelNotes.Areas.Admin.Controllers
 
             return Json(new { data = objUserList });
         }
-
 
         [HttpPost]
         public IActionResult LockUnlock([FromBody] string id)

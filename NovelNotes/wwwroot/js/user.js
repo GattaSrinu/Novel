@@ -57,11 +57,11 @@ function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": { url: '/admin/user/getall' },
         "columns": [
-            { "data": "name", "width": "15%" },
-            { "data": "email", "width": "15%" },
-            { "data": "phoneNumber", "width": "15%" },
-            { "data": "company.name", "width": "15%" },
-            { "data": "role", "width": "15%" },
+            { "data": "name", "width": "10%" }, 
+            { "data": "email", "width": "10%" },
+            { "data": "phoneNumber", "width": "10%" },
+            { "data": "company.name", "width": "10%" },
+            { "data": "role", "width": "10%" },
             {
                 data: { id: "id", lockoutEnd: "lockoutEnd" },
                 "render": function (data) {
@@ -70,16 +70,16 @@ function loadDataTable() {
 
                     var lockUnlockButton = lockout > today
                         ? `<a onclick=LockUnlock('${data.id}') class="btn btn-danger text-white" style="cursor:pointer; width:100px;"><i class="bi bi-lock-fill"></i> Lock</a>`
-                        : `<a onclick=LockUnlock('${data.id}') class="btn btn-success text-white" style="cursor:pointer; width:100px;"><i class="bi bi-unlock-fill"></i> UnLock</a>`;
+                        : `<a onclick=LockUnlock('${data.id}') class="btn btn-success text-white" style="cursor:pointer; width:120px;"><i class="bi bi-unlock-fill"></i>UnLock</a>`;
 
-                  /*  var editButton = `<a href="/admin/user/edit/${data.id}" class="btn btn-primary text-white" style="cursor:pointer; width:100px;"><i class="bi bi-pencil-fill"></i> Edit</a>`;*/
+                    var edit = `<a href="/admin/user/edit/${data.id}" class="btn btn-primary text-white" style="cursor:pointer; width:100px;"><i class="bi bi-pencil-fill"></i>Edit</a>`;
 
-                    var permissionButton = `<a href="/admin/user/RoleManagment?userId=${data.id}" class="btn btn-danger text-white" style="cursor:pointer; width:150px;"><i class="bi bi-pencil-square"></i> Permission</a>`;
+                    var permissionButton = `<a href="/admin/user/RoleManagment?userId=${data.id}" class="btn btn-danger text-white" style="cursor:pointer; width:120px;"><i class="bi bi-pencil-square"></i>Permission</a>`;
 
                     return `
                         <div class="text-center">
                             ${lockUnlockButton}
-                                                      ${editButton}*
+                             ${edit}
                             ${permissionButton}
                         </div>
                     `;

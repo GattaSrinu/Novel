@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 
 
@@ -16,11 +17,15 @@ namespace Novel.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        [Required]
+        [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
+        [Required]
         public string? StreetAddress { get; set; }
+        [Required]
         public string? City { get; set; }
+        [Required]
         public string? State { get; set; }
+        [Required]
         public string? PostalCode { get; set; }
 
         public int? CompanyId { get; set; }
@@ -31,6 +36,7 @@ namespace Novel.Models
 
         [NotMapped]
         public string Role { get; set; }
+
     }
 
 
