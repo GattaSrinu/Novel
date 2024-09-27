@@ -12,6 +12,7 @@ using System.Data;
 using Novel.DataAccess.Repository;
 using SendGrid.Helpers.Mail;
 using Stripe.Climate;
+using System.Linq.Expressions;
 
 namespace NovelNotes.Areas.Admin.Controllers
 {
@@ -168,6 +169,11 @@ namespace NovelNotes.Areas.Admin.Controllers
             foreach (var user in objUserList)
             {
                 user.Role = _userManager.GetRolesAsync(user).GetAwaiter().GetResult().FirstOrDefault();
+
+                if (user.CompanyId != null)
+                {
+                    user.Company = _unitOfWork.Company.GetFirstOrDefault(c => c.Id == user.CompanyId);
+                }
 
                 if (user.Company == null)
                 {

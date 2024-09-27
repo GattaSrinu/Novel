@@ -102,6 +102,7 @@ namespace NovelNotes.Areas.Identity.Pages.Account
             public IEnumerable<SelectListItem> RoleList { get; set; }
 
             [Required]
+             [RegularExpression(@"^[a-zA-Z0-9\s]+$", ErrorMessage = "Username can only contain letters, digits, and spaces.")]
             public string Name { get; set; }
             [Required]
             public string? StreetAddress { get; set; }

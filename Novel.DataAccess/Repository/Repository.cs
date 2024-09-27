@@ -78,15 +78,16 @@ namespace Novel.DataAccess.Repository
             }
             return query.FirstOrDefault();
         }
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter,string? includeProperties = null)
+
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
 
             if (!string.IsNullOrEmpty(includeProperties))
             {
                 foreach (var includePop in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                { 
-                    query =query.Include(includePop);
+                {
+                    query = query.Include(includePop);
                 }
             }
 
