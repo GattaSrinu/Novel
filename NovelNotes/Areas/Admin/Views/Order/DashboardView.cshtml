@@ -1,0 +1,108 @@
+﻿@model Novel.Models.ViewModels.DashboardView
+
+@{
+    var status = Context.Request.Query["status"];
+    var pending = "text-primary";
+    var inprocess = "text-primary";
+    var completed = "text-primary";
+    var approved = "text-primary";
+    var all = "text-primary";
+
+    switch (status)
+    {
+        case "pending":
+            pending = "active text-white bg-primary";
+            break;
+        case "inprocess":
+            inprocess = "active text-white bg-primary";
+            break;
+        case "completed":
+            completed = "active text-white bg-primary";
+            break;
+        case "approved":
+            approved = "active text-white bg-primary";
+            break;
+        default:
+            all = "active text-white bg-primary";
+            break;
+    }
+}
+<style>
+    .card {
+        transition: transform 0.3s;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+    .count-value {
+        color: black; /* Change the text color to black */
+    }
+
+</style>
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Order Dashboard</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card text-center bg-light border border-primary rounded">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Orders</h5>
+                        <a asp-controller="Order" asp-action="Index" asp-route-status="all" style="text-decoration:none;">
+                            <p class="card-text h3">@Model.TotalOrders</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card text-center bg-warning border border-warning rounded">
+                    <div class="card-body">
+                        <h5 class="card-title">In Process</h5>
+                        <a asp-controller="Order" asp-action="Index" asp-route-status="inprocess" style="text-decoration:none;">
+                            <p class="card-text h3 count-value">@Model.TotalInProcess</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card text-center bg-success border border-success rounded">
+                    <div class="card-body">
+                        <h5 class="card-title">Approved</h5>
+                        <a asp-controller="Order" asp-action="Index" asp-route-status="approved" style="text-decoration:none;">
+                            <p class="card-text h3 count-value">@Model.TotalApproved</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card text-center bg-danger border border-danger rounded">
+                    <div class="card-body">
+                        <h5 class="card-title">Pending</h5>
+                        <a asp-controller="Order" asp-action="Index" asp-route-status="pending" style="text-decoration:none;">
+                            <p class="card-text h3">@Model.TotalPending</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card text-center bg-success border border-danger rounded">
+                    <div class="card-body">
+                        <h5 class="card-title">Completed</h5>
+                        <a asp-controller="Order" asp-action="Index" asp-route-status="completed" style="text-decoration:none;">                        
+                            <p class="card-text h3  count-value">@Model.TotalCompleted</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
