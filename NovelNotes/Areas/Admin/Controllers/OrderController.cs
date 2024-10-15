@@ -30,6 +30,27 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         {
             return View();
         }
+        //  Dash  Board created to Order List 
+        public IActionResult DashboardView()
+        {
+            // Get total counts
+            var totalOrders = _unitOfWork.OrderHeader.GetAll().ToList();
+            var totalInProcess = totalOrders.Count(o => o.OrderStatus == SD.StatusInProcess);
+            var totalApproved = totalOrders.Count(o => o.OrderStatus == SD.StatusApproved);
+            var totalPending = totalOrders.Count(o => o.PaymentStatus == SD.PaymentStatusDelayedPayment);
+            var totalcompleted = totalOrders.Count(o => o.OrderStatus == SD.StatusShipped);
+            // Create a model to hold the counts
+            var dashboardModel = new DashboardView
+            {
+                TotalOrders = totalOrders.Count,
+                TotalInProcess = totalInProcess,
+                TotalApproved = totalApproved,
+                TotalPending = totalPending,
+                TotalCompleted = totalcompleted
+            };
+
+            return View(dashboardModel);
+        }
 
         public IActionResult Details(int orderId)
         {
